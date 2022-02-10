@@ -176,6 +176,11 @@ class Routes
         return $this->apiUrl . '/receipts/' . $receiptId . '/qrcode';
     }
 
+    public function getReceiptPng(string $receiptId, int $width, int $paper_width): string
+    {
+        return $this->apiUrl . '/receipts/' . $receiptId . '/png?width=' . $width . '&paper_width=' . $paper_width;
+    }
+
     public function getAllTaxes(): string
     {
         return $this->apiUrl . '/tax';

@@ -527,6 +527,26 @@ class CheckboxJsonApi
         return $responseContents;
     }
 
+    public function getReceiptPng(string $receiptId, int $width, int $paper_width): string
+    {
+        $options = $this->requestOptions;
+        $options['headers']['Content-Type'] = 'image/png';
+
+        $response = $this->sendRequest(
+            self::METHOD_GET,
+            $this->routes->getReceiptPng($receiptId, $width, $paper_width),
+            $options
+        );
+
+        $responseContents = $response->getBody()->getContents();
+
+        if (empty($responseContents)) {
+            throw new Validation($responseContents);
+        }
+
+        return $responseContents;
+    }
+
     // end receipts methods //
 
     // start taxes methods //
